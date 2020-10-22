@@ -24,7 +24,7 @@ public class Cesta extends HttpServlet {
         ServiciosProductos sp = new ServiciosProductos();
         request.setAttribute("productos", sp.dameProductos());
 
-        request.getRequestDispatcher("jsp/productos.jsp").forward(request, response);
+        request.getRequestDispatcher("Jsp/productos.jsp").forward(request, response);
 
 
     }
