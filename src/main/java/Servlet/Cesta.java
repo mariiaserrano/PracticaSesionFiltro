@@ -22,7 +22,9 @@ public class Cesta extends HttpServlet {
 
     private void hazalgo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServiciosProductos sp = new ServiciosProductos();
-           response.getWriter().println(sp.dameProductos());
+        request.setAttribute("productos", sp.dameProductos());
+
+        request.getRequestDispatcher("jsp/productos.jsp").forward(request, response);
 
 
     }
