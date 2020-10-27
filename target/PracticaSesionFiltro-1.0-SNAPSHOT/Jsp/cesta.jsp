@@ -8,9 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Cesta de la compra</title>
 </head>
 <body>
+<h1>Articulos en la cesta</h1>
+
+
 
 </body>
 </html>

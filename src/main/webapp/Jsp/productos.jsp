@@ -10,7 +10,7 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title>Productos</title>
 </head>
 <body>
 <h1>Lista de productos</h1>
@@ -18,6 +18,7 @@
 <c:forEach var="producto" items="${productos}">
   <input type="checkbox" value="<c:out value="${producto.getNombre()}"/>"> <c:out value="${producto.getNombre()}"/> <br>
 </c:forEach>
-
+<br>
+<input type="submit" value="Añandir a la cesta">
 </body>
 </html>

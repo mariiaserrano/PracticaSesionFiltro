@@ -20,19 +20,29 @@ public class Login extends HttpServlet {
     }
 
     private void iniciaSesion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String usuarioRecibido = request.getParameter("usuario");
+       /* String usuarioRecibido = request.getParameter("usuario");
 
         var usuario = (String)request.getSession().getAttribute(usuarioRecibido);
 
         if (usuario !=null )
             response.getWriter().println(usuario);
         else
-            response.getWriter().println("error");
+            response.getWriter().println("error");*/
+        var sesion = request.getSession();
+        String user, pass;
+        user = request.getParameter("usuario");
+        pass = request.getParameter("contrasena");
 
-        /*ServiciosProductos sp = new ServiciosProductos();
-        request.setAttribute("productos", sp.dameProductos());
+        if(user.equals("admin") && pass.equals("admin") && sesion.getAttribute("usuario") == null){
+             ServiciosProductos sp = new ServiciosProductos();
+            request.setAttribute("productos", sp.dameProductos());
 
-        request.getRequestDispatcher("Jsp/productos.jsp").forward(request, response);*/
+            request.getRequestDispatcher("Jsp/productos.jsp").forward(request, response);
+        }else{
+
+            request.getRequestDispatcher("Jsp/error.jsp").forward(request, response);
+        }
+
 
 
     }

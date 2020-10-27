@@ -21,10 +21,7 @@ public class Cesta extends HttpServlet {
 
 
     private void hazalgo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ServiciosProductos sp = new ServiciosProductos();
-        request.setAttribute("productos", sp.dameProductos());
 
-        request.getRequestDispatcher("Jsp/productos.jsp").forward(request, response);
 
 
     }
