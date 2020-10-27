@@ -19,6 +19,13 @@
   <input type="checkbox" value="<c:out value="${producto.getNombre()}"/>"> <c:out value="${producto.getNombre()}"/> <br>
 </c:forEach>
 <br>
-<input type="submit" value="Añandir a la cesta">
+<input type="submit" value="Añandir a la cesta" style="text-decoration: none;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #1883ba;
+    border-radius: 6px;
+    border: 2px solid #0016b0;">
 </body>
 </html>
