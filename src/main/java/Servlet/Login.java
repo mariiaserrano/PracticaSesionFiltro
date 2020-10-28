@@ -3,6 +3,7 @@ package Servlet;
 import Model.Usuario;
 import Servicios.ServiciosProductos;
 import Servicios.ServiciosUsuarios;
+import Utils.Constantes;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,7 @@ import java.io.IOException;
 
 @WebServlet(name = "Login", urlPatterns = {"/login"})
 public class Login extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         iniciaSesion(request, response);
     }
@@ -24,24 +26,22 @@ public class Login extends HttpServlet {
     private void iniciaSesion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServiciosUsuarios serUs = new ServiciosUsuarios();
         var sesion = request.getSession();
-        String user, pass;
-        user = request.getParameter("usuario");
-        pass = request.getParameter("contrasena");
+        String user = request.getParameter(Constantes.USUARIO);
+        String pass = request.getParameter(Constantes.CONTRASENA);
 
-        if (user == null||user.isEmpty()  ) {
-            request.getRequestDispatcher("Jsp/error.jsp").forward(request, response);
+        if (user == null || user.isEmpty()) {
+            request.getRequestDispatcher(Constantes.JSP_ERROR_JSP).forward(request, response);
         }
-        if (pass == null||pass.isEmpty()  ) {
-            request.getRequestDispatcher("Jsp/error.jsp").forward(request, response);
+        if (pass == null || pass.isEmpty()) {
+            request.getRequestDispatcher(Constantes.JSP_ERROR_JSP).forward(request, response);
         }
 
         if (serUs.comprobarUsuario(user, pass)) {
-            sesion.setAttribute("usuario",user);
+            sesion.setAttribute(Constantes.USUARIO, user);
             request.getRequestDispatcher("menu.html").forward(request, response);
-        }
-        else {
+        } else {
 
-            request.getRequestDispatcher("Jsp/error.jsp").forward(request, response);
+            request.getRequestDispatcher(Constantes.JSP_ERROR_JSP).forward(request, response);
         }
 
 

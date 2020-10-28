@@ -1,5 +1,7 @@
 package Filtros;
 
+import Utils.Constantes;
+
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -18,14 +20,14 @@ public class FilterLogin implements Filter {
         HttpSession session = request.getSession(false);
        // String loginURI = request.getContextPath() + "/login";
 
-        boolean loggedIn = session != null && session.getAttribute("usuario") != null;
+        boolean loggedIn = session != null && session.getAttribute(Constantes.USUARIO) != null;
        // boolean loginRequest = request.getRequestURI().equals(loginURI);
 
-       if(session != null && session.getAttribute("usuario")!= null){
+       if(session != null && session.getAttribute(Constantes.USUARIO)!= null){
            chain.doFilter(request,response);
        }
        else{
-           request.getRequestDispatcher("Jsp/error.jsp").forward(request, response);
+           request.getRequestDispatcher(Constantes.JSP_ERROR_JSP).forward(request, response);
        }
 
 

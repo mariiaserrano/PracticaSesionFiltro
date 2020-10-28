@@ -1,6 +1,7 @@
 package Servlet;
 
 import Servicios.ServiciosProductos;
+import Utils.Constantes;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import java.io.IOException;
 
 @WebServlet(name = "Productos", urlPatterns = {"/productos"})
 public class Productos extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 hazalgo(request,response);
     }
@@ -21,7 +23,7 @@ hazalgo(request,response);
 
     private void hazalgo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServiciosProductos sp = new ServiciosProductos();
-        request.setAttribute("productos", sp.dameProductos());
+        request.setAttribute(Constantes.PRODUCTOS, sp.dameProductos());
 
         request.getRequestDispatcher("Jsp/productos.jsp").forward(request, response);
     }
