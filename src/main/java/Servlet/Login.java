@@ -28,10 +28,10 @@ public class Login extends HttpServlet {
         user = request.getParameter("usuario");
         pass = request.getParameter("contrasena");
 
-        if (user.isEmpty() || user == null) {
+        if (user == null||user.isEmpty()  ) {
             request.getRequestDispatcher("Jsp/error.jsp").forward(request, response);
         }
-        if (pass.isEmpty() || pass == null) {
+        if (pass == null||pass.isEmpty()  ) {
             request.getRequestDispatcher("Jsp/error.jsp").forward(request, response);
         }
 

@@ -2,15 +2,42 @@ package Filtros;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "FilterLogin")
+@WebFilter(filterName = "FilterLogin", urlPatterns = {"/cesta", "/productos"})
 public class FilterLogin implements Filter {
     public void destroy() {
     }
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
-        chain.doFilter(req, resp);
+        HttpServletRequest request = (HttpServletRequest) req;
+        HttpServletResponse response = (HttpServletResponse) resp;
+        HttpSession session = request.getSession(false);
+       // String loginURI = request.getContextPath() + "/login";
+
+        boolean loggedIn = session != null && session.getAttribute("usuario") != null;
+       // boolean loginRequest = request.getRequestURI().equals(loginURI);
+
+       if(session != null && session.getAttribute("usuario")!= null){
+           chain.doFilter(request,response);
+       }
+       else{
+           request.getRequestDispatcher("Jsp/error.jsp").forward(request, response);
+       }
+
+
+        /*if (loggedIn || loginRequest) {
+            chain.doFilter(request, response);
+        } else {
+            request.getRequestDispatcher("Jsp/error.jsp").forward(request, response);
+        }*/
+
+
+
+       // chain.doFilter(req, resp);
     }
 
     public void init(FilterConfig config) throws ServletException {

@@ -11,6 +11,6 @@
     <title>Error</title>
 </head>
 <body>
-<h1>Usuario o contraseña incorrectos</h1>
+<h1>Usuario no valido</h1>
 </body>
 </html>
