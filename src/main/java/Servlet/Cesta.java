@@ -21,7 +21,7 @@ public class Cesta extends HttpServlet {
 
 
     private void hazalgo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.getRequestDispatcher("Jsp/cesta.jsp").forward(request, response);
 
 
     }

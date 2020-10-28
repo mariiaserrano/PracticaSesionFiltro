@@ -1,6 +1,8 @@
 package Servlet;
 
+import Model.Usuario;
 import Servicios.ServiciosProductos;
+import Servicios.ServiciosUsuarios;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +14,7 @@ import java.io.IOException;
 @WebServlet(name = "Login", urlPatterns = {"/login"})
 public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        iniciaSesion(request,response);
+        iniciaSesion(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -20,29 +22,27 @@ public class Login extends HttpServlet {
     }
 
     private void iniciaSesion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       /* String usuarioRecibido = request.getParameter("usuario");
-
-        var usuario = (String)request.getSession().getAttribute(usuarioRecibido);
-
-        if (usuario !=null )
-            response.getWriter().println(usuario);
-        else
-            response.getWriter().println("error");*/
+        ServiciosUsuarios serUs = new ServiciosUsuarios();
         var sesion = request.getSession();
         String user, pass;
         user = request.getParameter("usuario");
         pass = request.getParameter("contrasena");
 
-        if(user.equals("admin") && pass.equals("admin") && sesion.getAttribute("usuario") == null){
-             ServiciosProductos sp = new ServiciosProductos();
-            request.setAttribute("productos", sp.dameProductos());
-
-            request.getRequestDispatcher("Jsp/productos.jsp").forward(request, response);
-        }else{
-
+        if (user.isEmpty() || user == null) {
+            request.getRequestDispatcher("Jsp/error.jsp").forward(request, response);
+        }
+        if (pass.isEmpty() || pass == null) {
             request.getRequestDispatcher("Jsp/error.jsp").forward(request, response);
         }
 
+        if (serUs.comprobarUsuario(user, pass)) {
+            sesion.setAttribute("usuario",user);
+            request.getRequestDispatcher("menu.html").forward(request, response);
+        }
+        else {
+
+            request.getRequestDispatcher("Jsp/error.jsp").forward(request, response);
+        }
 
 
     }

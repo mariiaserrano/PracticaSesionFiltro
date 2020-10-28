@@ -13,7 +13,14 @@
 <body>
 <h1>Articulos en la cesta</h1>
 
-
+<input type="submit" value="Comprar" style="text-decoration: none;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #1883ba;
+    border-radius: 6px;
+    border: 2px solid #0016b0;">
 
 </body>
 </html>

@@ -61,37 +61,37 @@ public class DaoUsuarios {
     }
 
 
-    public Usuario comprobarUsuario(String user, String pass){
-            DBConnection db = new DBConnection();
-            ResultSet resultSet = null;
-            Connection con = null;
-            PreparedStatement stmt = null;
-            Usuario aux = new Usuario(user, pass);
+    public boolean comprobarUsuario(String user, String pass){
+
+            boolean ok = false;
+
+        DBConnection db = new DBConnection();
+        ResultSet resultSet = null;
+        Connection con = null;
+        PreparedStatement stmt = null;
+            PasswordHash  hash = new PasswordHash();
+
             try {
-
                 con = db.getConnection();
-                String selectSql = "SELECT * FROM Clientes";
-
+                String selectSql = "SELECT * FROM Clientes;";
                 stmt = con.prepareStatement(selectSql);
-
                 resultSet = stmt.executeQuery();
 
                 while (resultSet.next()) {
-                    aux = new Usuario(resultSet.getString(1),
-                            resultSet.getString(2));
-
+                    String passHasheada = resultSet.getString("contrasena");
+                    if (resultSet.getString("Usuario").equals(user) && hash.validatePassword(pass, passHasheada)) {
+                        ok = true;
+                    }
                 }
             } catch (Exception ex) {
-                Logger.getLogger(DaoProductos.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DaoUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             } finally {
                 db.cerrarResultSet(resultSet);
                 db.cerrarStatement(stmt);
                 db.cerrarConexion(con);
-
             }
 
-            return aux;
-
-    }
+            return ok;
+        }
     }
 

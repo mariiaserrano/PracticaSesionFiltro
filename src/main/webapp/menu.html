@@ -6,7 +6,9 @@
 </head>
 <body>
 <h1>Menu </h1>
-<button onclick="location.href='Jsp/productos.jsp'" style="text-decoration: none;
+<form method="post" action="productos">
+
+<button type="submit" style="text-decoration: none;
     padding: 10px;
     font-weight: 600;
     font-size: 20px;
@@ -14,7 +16,11 @@
     background-color: #1883ba;
     border-radius: 6px;
     border: 2px solid #0016b0;"> Ver Productos</button>
-<button onclick="location.href='Jsp/cesta.jsp'" style="text-decoration: none;
+
+</form>
+
+<form method="post"action="cesta">
+<button type="submit" style="text-decoration: none;
     padding: 10px;
     font-weight: 600;
     font-size: 20px;
@@ -22,6 +28,7 @@
     background-color: #1883ba;
     border-radius: 6px;
     border: 2px solid #0016b0;"> Ver Cesta</button>
-
+</form>
 </body>
+
 </html>
