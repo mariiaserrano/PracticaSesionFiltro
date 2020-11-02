@@ -48,10 +48,18 @@
     background-color: #1883ba;
     border-radius: 6px;
     border: 2px solid #0016b0;">
+    <input type="submit" name="op" value="Limpiar" style="text-decoration: none;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #ffffff;
+    background-color: #1883ba;
+    border-radius: 6px;
+    border: 2px solid #0016b0;">
 
 </form>
 
-<form method="post" action="logout">
+<form method="post" action="logout" style="alignment: center">
     <input type="submit" value="Cerrar Sesion"  style="text-decoration: none;
     padding: 10px;
     font-weight: 600;

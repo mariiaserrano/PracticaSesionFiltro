@@ -46,6 +46,10 @@ public class Opciones extends HttpServlet {
                 request.getRequestDispatcher("Jsp/mensajeCerrarSesion.jsp").forward(request, response);
                 break;
 
+            case "Limpiar":
+                request.getSession().setAttribute(Constantes.PRODUCTO_COMPRADO, null);
+                request.getRequestDispatcher(Constantes.JSP_CESTA_JSP).forward(request, response);
+
         }
 
 
