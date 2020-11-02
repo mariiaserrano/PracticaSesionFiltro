@@ -26,6 +26,7 @@ public class Login extends HttpServlet {
     private void iniciaSesion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServiciosUsuarios serUs = new ServiciosUsuarios();
         var sesion = request.getSession();
+        String mensaje= "La lista de productos está vacia";
         String user = request.getParameter(Constantes.USUARIO);
         String pass = request.getParameter(Constantes.CONTRASENA);
 
@@ -38,7 +39,14 @@ public class Login extends HttpServlet {
 
         if (serUs.comprobarUsuario(user, pass)) {
             sesion.setAttribute(Constantes.USUARIO, user);
-            request.getRequestDispatcher("menu.html").forward(request, response);
+            ServiciosProductos sp = new ServiciosProductos();
+            if(sp.dameProductos()!= null){
+            request.setAttribute(Constantes.PRODUCTOS, sp.dameProductos());
+            request.getRequestDispatcher(Constantes.JSP_PRODUCTOS_JSP).forward(request, response);}
+            else{
+                request.setAttribute(Constantes.MENSAJE, mensaje);
+                request.getRequestDispatcher(Constantes.JSP_MENSAJE_ERROR_JSP).forward(request,response);
+            }
         } else {
 
             request.getRequestDispatcher(Constantes.JSP_ERROR_JSP).forward(request, response);

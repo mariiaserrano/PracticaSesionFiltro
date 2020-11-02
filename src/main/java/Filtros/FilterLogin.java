@@ -18,10 +18,8 @@ public class FilterLogin implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
         HttpSession session = request.getSession(false);
-       // String loginURI = request.getContextPath() + "/login";
 
         boolean loggedIn = session != null && session.getAttribute(Constantes.USUARIO) != null;
-       // boolean loginRequest = request.getRequestURI().equals(loginURI);
 
        if(session != null && session.getAttribute(Constantes.USUARIO)!= null){
            chain.doFilter(request,response);
@@ -30,16 +28,6 @@ public class FilterLogin implements Filter {
            request.getRequestDispatcher(Constantes.JSP_ERROR_JSP).forward(request, response);
        }
 
-
-        /*if (loggedIn || loginRequest) {
-            chain.doFilter(request, response);
-        } else {
-            request.getRequestDispatcher("Jsp/error.jsp").forward(request, response);
-        }*/
-
-
-
-       // chain.doFilter(req, resp);
     }
 
     public void init(FilterConfig config) throws ServletException {

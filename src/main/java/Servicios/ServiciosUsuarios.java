@@ -7,6 +7,6 @@ public class ServiciosUsuarios {
 
     public boolean comprobarUsuario(String user, String pass) {
         DaoUsuarios dao = new DaoUsuarios();
-    return  dao.comprobarUsuario(user,pass);
+        return dao.comprobarUsuario(user, pass);
     }
 }

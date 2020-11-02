@@ -15,8 +15,7 @@ import java.util.logging.Logger;
 public class DaoProductos {
 
 
-
-    public List<Producto> dameProductos(){
+    public List<Producto> dameProductos() {
         DBConnection db = new DBConnection();
         ResultSet resultSet = null;
         Connection con = null;
@@ -32,7 +31,8 @@ public class DaoProductos {
             resultSet = stmt.executeQuery();
 
             while (resultSet.next()) {
-                Producto aux = new Producto(resultSet.getString(1));
+                Producto aux = new Producto();
+                aux.setNombre(resultSet.getString(1));
                 productos.add(aux);
             }
         } catch (Exception ex) {
@@ -47,6 +47,17 @@ public class DaoProductos {
         return productos;
 
 
+    }
+
+
+    public List<Producto> anadirArticulo(String[] nombre) {
+        List<Producto> productos = new ArrayList<>();
+        for (String producto : nombre) {
+            Producto aux = new Producto();
+            aux.setNombre(producto);
+            productos.add(aux);
+        }
+        return productos;
 
     }
 }

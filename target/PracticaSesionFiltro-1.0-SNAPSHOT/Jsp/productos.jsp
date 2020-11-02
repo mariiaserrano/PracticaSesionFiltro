@@ -14,12 +14,14 @@
 </head>
 <body>
 <h1>Lista de productos</h1>
-
-<c:forEach var="producto" items="${productos}">
-  <input type="checkbox" value="<c:out value="${producto.getNombre()}"/>"> <c:out value="${producto.getNombre()}"/> <br>
-</c:forEach>
-<br>
-<input type="submit" value="Añandir a la cesta" style="text-decoration: none;
+<form method="post" action="cesta">
+    <c:forEach var="producto" items="${productos}">
+        <input type="checkbox" name="productoComprado"
+               value="<c:out value="${producto.getNombre()}"/>">
+        <c:out value="${producto.getNombre()}"/> <br>
+    </c:forEach>
+    <br>
+    <input type="submit" value="Añandir a la cesta" style="text-decoration: none;
     padding: 10px;
     font-weight: 600;
     font-size: 20px;
@@ -27,5 +29,7 @@
     background-color: #1883ba;
     border-radius: 6px;
     border: 2px solid #0016b0;">
+</form>
+<br>
 </body>
 </html>
